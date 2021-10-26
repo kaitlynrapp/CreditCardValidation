@@ -1,12 +1,12 @@
 import java.io.File;
 import java.util.Scanner;
 import java.io.IOException;
+import java.util.Random;
+import java.util.Arrays;
 
-public class CreditCardValidation
-	{
+public class creditCard2	{
 		static int counter = 0;
-		static int counter2 = 0;
-		static boolean alternate = false;
+		static int validCounter = 0;
 		public static void main(String[] args) throws IOException
 			{
 				checkValid();
@@ -14,14 +14,28 @@ public class CreditCardValidation
 		
 		public static void checkValid() throws IOException
 			{
-					Scanner myFile = new Scanner(new File("RealCardNums.txt"));
 					
 					
-					while(myFile.hasNext())
-							{
-								String card = myFile.nextLine();
-								//create array
-								int[] nums = new int[card.length()];
+					while (counter < 100)
+						{
+							int [] cardNums = new int [16];
+									//double [] cardNums = new double [16];
+									//Random randomNums = new Random();
+							for (int i = 0; i < cardNums.length; i++)
+								{
+									int randomNums = (int)(Math.random() * 9) + 1;
+									cardNums[i] = randomNums;
+									System.out.println(cardNums);
+								}
+							Scanner eachCard = new Scanner(System.in);
+							String card = eachCard.nextLine();
+							counter++;
+							
+							System.out.println(card);
+							
+							int[] nums = new int[card.length()];
+							
+											//int[] nums = new int[16];
 								
 							//fill array	
 							for (int i = 0; i < card.length(); i++)
@@ -54,7 +68,7 @@ public class CreditCardValidation
 							    
 							    if (totalSum % 10 == 0)
 							    	{
-							    		counter++;	
+							    	validCounter++;	
 							        System.out.println(card + " is valid");
 							    	} 
 							   else
@@ -63,10 +77,12 @@ public class CreditCardValidation
 							    	}
 							
 							}
-				System.out.println("\n" + counter + " cards given are valid.");
+				System.out.println("\n" + validCounter + " cards are valid.");
+				System.out.println("It took " + counter + " tries.");
 					
 					
 					
 			}
 
 	}
+
